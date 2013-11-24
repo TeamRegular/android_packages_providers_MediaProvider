@@ -5244,6 +5244,8 @@ public class MediaProvider extends ContentProvider {
             } else if (EXTERNAL_VOLUME.equals(volume)) {
                 if (Environment.isExternalStorageRemovable()) {
                     String path = mExternalStoragePaths[0];
+                    // Allow MediaProvider access to /mnt/media_rw
+                    path = path.replace("/storage","/mnt/media_rw");
                     int volumeID = FileUtils.getFatVolumeId(path);
                     //if (LOCAL_LOGV) Log.v(TAG, path + " volume ID: " + volumeID);
                     Log.e(TAG, path + " volume ID: " + volumeID);
